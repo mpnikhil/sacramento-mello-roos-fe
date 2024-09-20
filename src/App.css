@@ -1,0 +1,109 @@
+/* General App Styling */
+.App {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #121212; /* Dark background color */
+}
+
+.container {
+  width: 100%;
+  max-width: 400px;
+  padding: 20px;
+  background: #1e1e1e; /* Dark Paper background */
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.3); /* Adjust shadow for dark mode */
+  border-radius: 12px;
+  text-align: center;
+}
+
+h1 {
+  font-size: 1.8em;
+  color: #90caf9; /* Light color for headings */
+  margin-bottom: 1.5em;
+}
+
+label {
+  display: block;
+  font-size: 1em;
+  margin-bottom: 8px;
+  text-align: left;
+  color: white; /* Ensure label text is white */
+}
+
+input {
+  width: 100%;
+  padding: 12px;
+  font-size: 1em;
+  border: 1px solid #555; /* Dark border */
+  border-radius: 6px;
+  outline: none;
+  transition: border 0.3s ease;
+  margin-bottom: 1.5em;
+  background-color: #333; /* Dark input field */
+  color: white; /* Input text color */
+}
+
+input:focus {
+  border-color: #90caf9; /* Light blue on focus */
+}
+
+button {
+  width: 100%;
+  padding: 12px;
+  background-color: #007bff; /* Primary button color */
+  color: white;
+  font-size: 1em;
+  font-weight: bold;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #0056b3; /* Darker shade on hover */
+}
+
+button:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
+
+/* Message Section */
+p {
+  margin-top: 1.5em;
+  font-size: 1em;
+}
+
+.error {
+  color: #ff4f4f; /* Error message color */
+}
+
+.loading {
+  color: #007bff; /* Loading text color */
+}
+
+.taxBill {
+  color: #28a745; /* Tax bill success color */
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 600px) {
+  .container {
+    width: 90%;
+  }
+}
+
+/* Ensure full height for the body and html */
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  background-color: #121212; /* Dark background */
+  color: white; /* Ensure text is white */
+}
+
+#root {
+  height: 100%;
+}
