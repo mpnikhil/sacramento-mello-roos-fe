@@ -11,6 +11,7 @@ import {
 } from '@mui/material';
 import LevyDetails from './LevyDetails';
 import { Analytics } from '@vercel/analytics/react';
+import { Helmet } from 'react-helmet';
 
 function App() {
   const [streetNumber, setStreetNumber] = useState('');
@@ -49,7 +50,17 @@ function App() {
   };
 
   return (
-    <><Container component="main" maxWidth="xs" style={{ marginTop: '50px' }}>
+    <>
+    <Helmet>
+        <title>Sacramento County Mello Roos Tax Information</title>
+        <meta name="description" content="Find Mello Roos property tax information in Sacramento County. Learn about direct levies and assessments." />
+        <meta name="keywords" content="Mello Roos, Sacramento, Elk Grove, Folsom, Natomas, West Sacramento, Rancho Cordova, Lincoln, Mello Roos" />
+        <meta property="og:title" content="Sacramento County Mello Roos Tax Information" />
+        <meta property="og:description" content="Find Mello Roos tax information in Sacramento County by address. Learn about direct levies and assessments." />
+        <meta property="og:url" content="https://sacramento-mello-roos.vercel.app/" />
+        <meta property="og:type" content="website" />
+    </Helmet>
+    <Container component="main" maxWidth="xs" style={{ marginTop: '50px' }}>
       <Paper elevation={3} style={{ padding: '20px', backgroundColor: '#1e1e1e' }}>
         <Typography variant="h4" component="h1" gutterBottom align="center">
           Sacramento County Mello Roos
