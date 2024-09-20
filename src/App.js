@@ -9,12 +9,13 @@ import {
   Container,
   Paper,
 } from '@mui/material';
+import LevyDetails from './LevyDetails';
 
 function App() {
   const [streetNumber, setStreetNumber] = useState('');
   const [streetName, setStreetName] = useState('');
   const [city, setCity] = useState('');
-  const [taxBill, setTaxBill] = useState(null);
+  const [taxDetails, setTaxDetails] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
@@ -26,21 +27,15 @@ function App() {
     const addressData = {
       streetNumber,
       streetName,
-      city
+      city,
     };
 
-    fetch('https://your-backend-url.vercel.app/get-tax-bill', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(addressData),
-    })
+    fetch(`https://sacramento-mello-roos-be.vercel.app/get-tax-details?street_number=${streetNumber}&street_name=${streetName}&city=${city}`)
       .then((response) => response.json())
       .then((data) => {
         setLoading(false);
-        if (data.message) {
-          setTaxBill(data.message);
+        if (data) {
+          setTaxDetails(data);
         } else {
           setError('No tax bill found.');
         }
@@ -112,10 +107,11 @@ function App() {
             <Alert severity="error">{error}</Alert>
           </Box>
         )}
-        {taxBill && (
-          <Box mt={2}>
-            <Alert severity="success">{taxBill}</Alert>
-          </Box>
+        {taxDetails && (
+          <LevyDetails
+            levyTotal={taxDetails.levy_total}
+            levies={taxDetails.levies}
+          />
         )}
       </Paper>
     </Container>
