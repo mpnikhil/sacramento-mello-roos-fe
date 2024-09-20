@@ -10,6 +10,7 @@ import {
   Paper,
 } from '@mui/material';
 import LevyDetails from './LevyDetails';
+import { Analytics } from '@vercel/analytics/react';
 
 function App() {
   const [streetNumber, setStreetNumber] = useState('');
@@ -48,7 +49,7 @@ function App() {
   };
 
   return (
-    <Container component="main" maxWidth="xs" style={{ marginTop: '50px' }}>
+    <><Container component="main" maxWidth="xs" style={{ marginTop: '50px' }}>
       <Paper elevation={3} style={{ padding: '20px', backgroundColor: '#1e1e1e' }}>
         <Typography variant="h4" component="h1" gutterBottom align="center">
           Sacramento County Mello Roos
@@ -62,8 +63,7 @@ function App() {
               value={streetNumber}
               onChange={(e) => setStreetNumber(e.target.value)}
               required
-              placeholder="1234"
-            />
+              placeholder="1234" />
           </Box>
           <Box mb={2}>
             <TextField
@@ -73,8 +73,7 @@ function App() {
               value={streetName}
               onChange={(e) => setStreetName(e.target.value)}
               required
-              placeholder="Main St"
-            />
+              placeholder="Main St" />
           </Box>
           <Box mb={2}>
             <TextField
@@ -84,8 +83,7 @@ function App() {
               value={city}
               onChange={(e) => setCity(e.target.value)}
               required
-              placeholder="Sacramento"
-            />
+              placeholder="Sacramento" />
           </Box>
           <Button
             type="submit"
@@ -110,11 +108,10 @@ function App() {
         {taxDetails && (
           <LevyDetails
             levyTotal={taxDetails.levy_total}
-            levies={taxDetails.levies}
-          />
+            levies={taxDetails.levies} />
         )}
       </Paper>
-    </Container>
+    </Container><Analytics /></>
   );
 }
 
