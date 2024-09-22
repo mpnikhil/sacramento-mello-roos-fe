@@ -34,7 +34,7 @@ const streetSuffixes = [
   'SQ', 'SQS', 'STA', 'STRM', 'ST', 'STS', 'SMT', 'TER', 'TRCE', 'TRAK',
   'TRKS', 'TRFY', 'TRL', 'TRLS', 'TRLR', 'TUNL', 'TPKE', 'UPAS', 'UN', 'UNS',
   'VLY', 'VLYS', 'VIA', 'VW', 'VWS', 'VLG', 'VLGS', 'VL', 'VIS', 'WALK',
-  'WALL', 'WY', 'WAYS', 'WL', 'WLS',
+  'WALL', 'WY', 'WAY', 'WAYS', 'WL', 'WLS',
 ];
 
 function App() {
