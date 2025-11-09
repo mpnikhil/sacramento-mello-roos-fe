@@ -19,6 +19,7 @@ import {
   Search as SearchIcon,
   LocationCity as CityIcon,
   InfoOutlined as InfoIcon,
+  Coffee as CoffeeIcon,
 } from '@mui/icons-material';
 import LevyDetails from './LevyDetails';
 import { Analytics } from '@vercel/analytics/react';
@@ -274,9 +275,41 @@ function App() {
 
           {/* Footer */}
           <Box className="footer">
-            <Typography variant="body2" className="footer-text">
-              Data sourced from Sacramento County official records
-            </Typography>
+            {/* Disclaimer */}
+            <Box className="disclaimer-box">
+              <Typography variant="body2" className="disclaimer-text">
+                This project is independently developed and not affiliated with the County of Sacramento. Data is derived from public records available under the California Public Records Act. Support links are voluntary and go toward hosting and data update costs.
+              </Typography>
+            </Box>
+            
+            {/* Donation Links */}
+            <Box className="donation-links" mt={3}>
+              <Typography variant="body2" className="donation-text" mb={1}>
+                Support this project:
+              </Typography>
+              <Box className="donation-buttons">
+                <Button
+                  component="a"
+                  href="https://buymeacoffee.com/helpfultools"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  variant="outlined"
+                  size="small"
+                  startIcon={<CoffeeIcon />}
+                  className="donation-button bmc-button"
+                  sx={{
+                    color: '#FFDD00',
+                    borderColor: '#FFDD00',
+                    '&:hover': {
+                      borderColor: '#FFDD00',
+                      background: 'rgba(255, 221, 0, 0.1)',
+                    },
+                  }}
+                >
+                  Buy Me a Coffee
+                </Button>
+              </Box>
+            </Box>
           </Box>
         </Container>
       </div>

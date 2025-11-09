@@ -313,9 +313,75 @@
   padding: 20px;
 }
 
-.footer-text {
-  color: rgba(255, 255, 255, 0.5) !important;
+/* Disclaimer */
+.disclaimer-box {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  backdrop-filter: blur(10px);
+}
+
+.disclaimer-text {
+  color: rgba(255, 255, 255, 0.7) !important;
+  font-size: 0.85rem !important;
+  line-height: 1.6 !important;
+  text-align: left;
+}
+
+/* Donation Links */
+.donation-links {
+  margin-top: 24px;
+  padding-top: 24px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.donation-text {
+  color: rgba(255, 255, 255, 0.7) !important;
   font-size: 0.9rem !important;
+  margin-bottom: 12px !important;
+}
+
+.donation-buttons {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.donation-button {
+  border-radius: 12px !important;
+  padding: 8px 20px !important;
+  font-weight: 600 !important;
+  text-transform: none !important;
+  transition: all 0.3s ease !important;
+  backdrop-filter: blur(10px);
+}
+
+.donation-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3) !important;
+}
+
+.bmc-button {
+  background: rgba(255, 221, 0, 0.05) !important;
+}
+
+.bmc-button:hover {
+  background: rgba(255, 221, 0, 0.15) !important;
+  box-shadow: 0 4px 16px rgba(255, 221, 0, 0.3) !important;
+}
+
+.paypal-button {
+  background: rgba(0, 112, 186, 0.05) !important;
+}
+
+.paypal-button:hover {
+  background: rgba(0, 112, 186, 0.15) !important;
+  box-shadow: 0 4px 16px rgba(0, 112, 186, 0.3) !important;
 }
 
 /* Mobile Responsiveness */
@@ -375,6 +441,25 @@
 
   .form-title {
     font-size: 1.25rem !important;
+  }
+
+  .donation-buttons {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .donation-button {
+    width: 100%;
+    max-width: 250px;
+  }
+
+  .disclaimer-box {
+    padding: 16px;
+  }
+
+  .disclaimer-text {
+    font-size: 0.8rem !important;
+    text-align: center !important;
   }
 }
 
