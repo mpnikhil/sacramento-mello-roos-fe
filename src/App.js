@@ -9,10 +9,21 @@ import {
   Container,
   Paper,
   Autocomplete,
+  Chip,
+  InputAdornment,
+  Fade,
+  Zoom,
 } from '@mui/material';
+import {
+  Home as HomeIcon,
+  Search as SearchIcon,
+  LocationCity as CityIcon,
+  InfoOutlined as InfoIcon,
+} from '@mui/icons-material';
 import LevyDetails from './LevyDetails';
 import { Analytics } from '@vercel/analytics/react';
 import { Helmet } from 'react-helmet';
+import './App.css';
 
 const streetSuffixes = [
   'ALY', 'ANX', 'ARC', 'AVE', 'BYU', 'BCH', 'BND', 'BLF', 'BLFS', 'BTM',
@@ -50,8 +61,9 @@ function App() {
     e.preventDefault();
     setLoading(true);
     setError(null);
+    setTaxDetails(null);
 
-    const fullStreetName = `${streetName} ${streetSuffix}`.trim(); // Concatenate street name and suffix
+    const fullStreetName = `${streetName} ${streetSuffix}`.trim();
 
     fetch(
       `https://sacramento-mello-roos-be.vercel.app/get-tax-details?street_number=${streetNumber}&street_name=${encodeURIComponent(fullStreetName)}&city=${encodeURIComponent(city)}`
@@ -59,17 +71,26 @@ function App() {
       .then((response) => response.json())
       .then((data) => {
         setLoading(false);
-        if (data) {
+        if (data && data.levy_total !== undefined) {
           setTaxDetails(data);
         } else {
-          setError('No tax bill found.');
+          setError('No tax information found for this address.');
         }
       })
       .catch((error) => {
         setLoading(false);
-        setError('Error fetching tax bill.');
+        setError('Error fetching tax information. Please try again.');
         console.error(error);
       });
+  };
+
+  const handleReset = () => {
+    setStreetNumber('');
+    setStreetName('');
+    setStreetSuffix('');
+    setCity('');
+    setTaxDetails(null);
+    setError(null);
   };
 
   return (
@@ -89,86 +110,171 @@ function App() {
         <meta property="og:url" content="https://sacramento-mello-roos.vercel.app/" />
         <meta property="og:type" content="website" />
       </Helmet>
-      <Container component="main" maxWidth="xs" style={{ marginTop: '50px' }}>
-        <Paper elevation={3} style={{ padding: '20px', backgroundColor: '#1e1e1e' }}>
-          <Typography variant="h4" component="h1" gutterBottom align="center">
-            Sacramento County Mello Roos
-          </Typography>
-          <form onSubmit={handleSubmit}>
-            <Box mb={2}>
-              <TextField
-                fullWidth
-                label="Street Number"
-                variant="outlined"
-                value={streetNumber}
-                onChange={(e) => setStreetNumber(e.target.value)}
-                required
-                placeholder="1234"
-              />
+      
+      <div className="app-background">
+        <div className="animated-gradient"></div>
+        
+        <Container component="main" maxWidth="md" className="main-container">
+          {/* Hero Section */}
+          <Fade in={true} timeout={800}>
+            <Box className="hero-section" mb={4}>
+              <HomeIcon className="hero-icon" />
+              <Typography variant="h3" component="h1" className="hero-title">
+                Sacramento County
+              </Typography>
+              <Typography variant="h4" component="h2" className="hero-subtitle">
+                Mello-Roos Tax Lookup
+              </Typography>
+              <Typography variant="body1" className="hero-description">
+                Discover property tax levies and assessments for any address in Sacramento County
+              </Typography>
+              <Box className="info-chip-container">
+                <Chip 
+                  icon={<InfoIcon />} 
+                  label="Direct Levies & Assessments" 
+                  className="info-chip"
+                  variant="outlined"
+                />
+              </Box>
             </Box>
-            <Box mb={2}>
-              <TextField
-                fullWidth
-                label="Street Name"
-                variant="outlined"
-                value={streetName}
-                onChange={(e) => setStreetName(e.target.value)}
-                required
-                placeholder="Main"
-              />
-            </Box>
-            <Box mb={2}>
-              <Autocomplete
-                options={streetSuffixes}
-                value={streetSuffix}
-                onChange={(e, newValue) => setStreetSuffix(newValue || '')}
-                renderInput={(params) => (
-                  <TextField
-                    {...params}
-                    label="Street Suffix"
-                    placeholder="St"
-                    variant="outlined"
-                    fullWidth
-                  />
-                )}
-              />
-            </Box>
-            <Box mb={2}>
-              <TextField
-                fullWidth
-                label="City"
-                variant="outlined"
-                value={city}
-                onChange={(e) => setCity(e.target.value)}
-                required
-                placeholder="Sacramento"
-              />
-            </Box>
-            <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              color="primary"
-              disabled={loading}
-            >
-              {loading ? <CircularProgress size={24} /> : 'Go'}
-            </Button>
-          </form>
-          {loading && (
-            <Box mt={2} display="flex" justifyContent="center">
-              <CircularProgress />
-            </Box>
-          )}
-          {error && (
-            <Box mt={2}>
-              <Alert severity="error">{error}</Alert>
-            </Box>
-          )}
-          {taxDetails && (
-            <LevyDetails levyTotal={taxDetails.levy_total} levies={taxDetails.levies} />
-          )}
-        </Paper>
-      </Container>
+          </Fade>
+
+          {/* Search Form */}
+          <Zoom in={true} timeout={600}>
+            <Paper elevation={6} className="search-paper">
+              <Typography variant="h6" className="form-title" gutterBottom>
+                Enter Property Address
+              </Typography>
+              
+              <form onSubmit={handleSubmit}>
+                <Box className="form-grid">
+                  <Box className="form-field">
+                    <TextField
+                      fullWidth
+                      label="Street Number"
+                      variant="outlined"
+                      value={streetNumber}
+                      onChange={(e) => setStreetNumber(e.target.value)}
+                      required
+                      placeholder="e.g., 1234"
+                      InputProps={{
+                        startAdornment: (
+                          <InputAdornment position="start">
+                            <HomeIcon color="action" />
+                          </InputAdornment>
+                        ),
+                      }}
+                      className="styled-input"
+                    />
+                  </Box>
+
+                  <Box className="form-field">
+                    <TextField
+                      fullWidth
+                      label="Street Name"
+                      variant="outlined"
+                      value={streetName}
+                      onChange={(e) => setStreetName(e.target.value)}
+                      required
+                      placeholder="e.g., Main"
+                      className="styled-input"
+                    />
+                  </Box>
+
+                  <Box className="form-field">
+                    <Autocomplete
+                      options={streetSuffixes}
+                      value={streetSuffix}
+                      onChange={(e, newValue) => setStreetSuffix(newValue || '')}
+                      renderInput={(params) => (
+                        <TextField
+                          {...params}
+                          label="Street Suffix (Optional)"
+                          placeholder="e.g., St, Ave, Dr"
+                          variant="outlined"
+                          fullWidth
+                          className="styled-input"
+                        />
+                      )}
+                      className="styled-autocomplete"
+                    />
+                  </Box>
+
+                  <Box className="form-field">
+                    <TextField
+                      fullWidth
+                      label="City"
+                      variant="outlined"
+                      value={city}
+                      onChange={(e) => setCity(e.target.value)}
+                      required
+                      placeholder="e.g., Sacramento"
+                      InputProps={{
+                        startAdornment: (
+                          <InputAdornment position="start">
+                            <CityIcon color="action" />
+                          </InputAdornment>
+                        ),
+                      }}
+                      className="styled-input"
+                    />
+                  </Box>
+                </Box>
+
+                <Box className="button-group">
+                  <Button
+                    type="submit"
+                    variant="contained"
+                    size="large"
+                    disabled={loading}
+                    className="search-button"
+                    startIcon={loading ? null : <SearchIcon />}
+                  >
+                    {loading ? <CircularProgress size={24} color="inherit" /> : 'Search Property'}
+                  </Button>
+                  
+                  {(taxDetails || error) && (
+                    <Button
+                      variant="outlined"
+                      size="large"
+                      onClick={handleReset}
+                      className="reset-button"
+                    >
+                      New Search
+                    </Button>
+                  )}
+                </Box>
+              </form>
+
+              {/* Results Section */}
+              {error && (
+                <Fade in={true}>
+                  <Box mt={3}>
+                    <Alert severity="error" className="alert-message">
+                      {error}
+                    </Alert>
+                  </Box>
+                </Fade>
+              )}
+
+              {taxDetails && (
+                <Fade in={true} timeout={800}>
+                  <Box mt={3}>
+                    <LevyDetails levyTotal={taxDetails.levy_total} levies={taxDetails.levies} />
+                  </Box>
+                </Fade>
+              )}
+            </Paper>
+          </Zoom>
+
+          {/* Footer */}
+          <Box className="footer">
+            <Typography variant="body2" className="footer-text">
+              Data sourced from Sacramento County official records
+            </Typography>
+          </Box>
+        </Container>
+      </div>
       <Analytics />
     </>
   );
