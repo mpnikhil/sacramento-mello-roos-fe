@@ -13,6 +13,12 @@ import {
   InputAdornment,
   Fade,
   Zoom,
+  Tooltip,
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogContentText,
+  IconButton,
 } from '@mui/material';
 import {
   Home as HomeIcon,
@@ -20,6 +26,7 @@ import {
   LocationCity as CityIcon,
   InfoOutlined as InfoIcon,
   Coffee as CoffeeIcon,
+  Close as CloseIcon,
 } from '@mui/icons-material';
 import LevyDetails from './LevyDetails';
 import { Analytics } from '@vercel/analytics/react';
@@ -57,6 +64,7 @@ function App() {
   const [taxDetails, setTaxDetails] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [infoDialogOpen, setInfoDialogOpen] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -135,13 +143,72 @@ function App() {
                 Discover property tax levies and assessments for any address in Sacramento County
               </Typography>
               <Box className="info-chip-container">
-                <Chip 
-                  icon={<InfoIcon />} 
-                  label="Direct Levies & Assessments" 
-                  className="info-chip"
-                  variant="outlined"
-                />
+                <Tooltip title="Click to learn more about Direct Levies & Assessments" arrow>
+                  <Chip 
+                    icon={<InfoIcon />} 
+                    label="Direct Levies & Assessments" 
+                    className="info-chip"
+                    variant="outlined"
+                    onClick={() => setInfoDialogOpen(true)}
+                    sx={{
+                      cursor: 'pointer',
+                      '&:hover': {
+                        transform: 'translateY(-2px)',
+                      },
+                    }}
+                  />
+                </Tooltip>
               </Box>
+              
+              {/* Info Dialog */}
+              <Dialog
+                open={infoDialogOpen}
+                onClose={() => setInfoDialogOpen(false)}
+                PaperProps={{
+                  sx: {
+                    background: 'rgba(30, 30, 47, 0.95)',
+                    backdropFilter: 'blur(20px)',
+                    border: '1px solid rgba(255, 255, 255, 0.1)',
+                    borderRadius: '16px',
+                  },
+                }}
+              >
+                <DialogTitle sx={{ color: '#ffffff', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                  <Typography variant="h6" component="span">
+                    Direct Levies & Assessments
+                  </Typography>
+                  <IconButton
+                    onClick={() => setInfoDialogOpen(false)}
+                    sx={{ color: '#ffffff' }}
+                    size="small"
+                  >
+                    <CloseIcon />
+                  </IconButton>
+                </DialogTitle>
+                <DialogContent>
+                  <DialogContentText sx={{ color: 'rgba(255, 255, 255, 0.8)', lineHeight: 1.8 }}>
+                    <Typography variant="body1" paragraph>
+                      <strong>Direct Levies & Assessments</strong> refer to special taxes and fees that are assessed on properties in certain areas, including Mello-Roos taxes.
+                    </Typography>
+                    <Typography variant="body1" paragraph>
+                      These levies are typically used to finance public infrastructure improvements such as:
+                    </Typography>
+                    <Box component="ul" sx={{ pl: 3, mb: 2 }}>
+                      <li>Roads and highways</li>
+                      <li>Schools and educational facilities</li>
+                      <li>Parks and recreational facilities</li>
+                      <li>Water and sewer systems</li>
+                      <li>Public safety facilities</li>
+                    </Box>
+                    <Typography variant="body1" paragraph>
+                      <strong>Mello-Roos taxes</strong> are a type of special tax authorized under California law (Community Facilities Act of 1982) that allows local governments to finance public improvements and services.
+                    </Typography>
+                    <Typography variant="body2" sx={{ color: 'rgba(255, 255, 255, 0.6)', fontStyle: 'italic' }}>
+                      The amounts shown represent annual totals. Monthly estimates are calculated by dividing the annual amount by 12 months.
+                    </Typography>
+                  </DialogContentText>
+                </DialogContent>
+              </Dialog>
             </Box>
           </Fade>
 
