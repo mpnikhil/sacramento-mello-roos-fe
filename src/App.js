@@ -96,19 +96,24 @@ function App() {
   return (
     <>
       <Helmet>
-        <title>Sacramento County Mello Roos Tax Information</title>
+        <title>Sacramento County Mello-Roos Tax Lookup | Property Tax Information</title>
         <meta
           name="description"
-          content="Find Mello Roos property tax information in Sacramento County. Learn about direct levies and assessments."
+          content="Free Mello-Roos tax lookup tool for Sacramento County. Find property tax levies, assessments, and annual amounts for any address in Sacramento, Elk Grove, Folsom, Natomas, West Sacramento, Rancho Cordova, and Lincoln."
         />
         <meta
           name="keywords"
-          content="Mello Roos, Sacramento, Elk Grove, Folsom, Natomas, West Sacramento, Rancho Cordova, Lincoln, Mello Roos"
+          content="Mello Roos, Sacramento County, property tax, tax lookup, Sacramento tax, Elk Grove tax, Folsom tax, Natomas tax, West Sacramento tax, Rancho Cordova tax, Lincoln tax, property assessment, direct levies, tax calculator, Sacramento County property tax"
         />
-        <meta property="og:title" content="Sacramento County Mello Roos Tax Information" />
-        <meta property="og:description" content="Find Mello Roos tax information in Sacramento County by address. Learn about direct levies and assessments." />
+        <meta property="og:title" content="Sacramento County Mello-Roos Tax Lookup | Property Tax Information" />
+        <meta property="og:description" content="Free Mello-Roos tax lookup tool for Sacramento County. Find property tax levies, assessments, and annual amounts for any address." />
         <meta property="og:url" content="https://sacramento-mello-roos.vercel.app/" />
         <meta property="og:type" content="website" />
+        <meta property="og:image" content="https://sacramento-mello-roos.vercel.app/og-image.png" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Sacramento County Mello-Roos Tax Lookup" />
+        <meta name="twitter:description" content="Free Mello-Roos tax lookup tool for Sacramento County. Find property tax levies and assessments." />
+        <link rel="canonical" href="https://sacramento-mello-roos.vercel.app/" />
       </Helmet>
       
       <div className="app-background">

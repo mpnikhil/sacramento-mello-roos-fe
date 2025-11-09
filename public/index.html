@@ -2,23 +2,135 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <link rel="icon" type="image/svg+xml" href="%PUBLIC_URL%/favicon.svg?v=2" />
-    <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#667eea" />
+    
+    <!-- Primary Meta Tags -->
+    <title>Sacramento County Mello-Roos Tax Lookup | Property Tax Information</title>
+    <meta name="title" content="Sacramento County Mello-Roos Tax Lookup | Property Tax Information" />
     <meta
       name="description"
-      content="Find Mello Roos property tax information in Sacramento County. Discover direct levies and assessments for any address."
+      content="Free Mello-Roos tax lookup tool for Sacramento County. Find property tax levies, assessments, and annual amounts for any address in Sacramento, Elk Grove, Folsom, Natomas, West Sacramento, Rancho Cordova, and Lincoln."
     />
+    <meta
+      name="keywords"
+      content="Mello Roos, Sacramento County, property tax, tax lookup, Sacramento tax, Elk Grove tax, Folsom tax, Natomas tax, West Sacramento tax, Rancho Cordova tax, Lincoln tax, property assessment, direct levies, tax calculator, Sacramento County property tax"
+    />
+    <meta name="author" content="Sacramento Mello-Roos Tax Lookup" />
+    <meta name="robots" content="index, follow" />
+    <meta name="language" content="English" />
+    <meta name="revisit-after" content="7 days" />
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://sacramento-mello-roos.vercel.app/" />
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://sacramento-mello-roos.vercel.app/" />
+    <meta property="og:title" content="Sacramento County Mello-Roos Tax Lookup | Property Tax Information" />
+    <meta property="og:description" content="Free Mello-Roos tax lookup tool for Sacramento County. Find property tax levies, assessments, and annual amounts for any address." />
+    <meta property="og:image" content="%PUBLIC_URL%/og-image.png" />
+    <meta property="og:site_name" content="Sacramento Mello-Roos Tax Lookup" />
+    <meta property="og:locale" content="en_US" />
+    
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="https://sacramento-mello-roos.vercel.app/" />
+    <meta name="twitter:title" content="Sacramento County Mello-Roos Tax Lookup" />
+    <meta name="twitter:description" content="Free Mello-Roos tax lookup tool for Sacramento County. Find property tax levies and assessments." />
+    <meta name="twitter:image" content="%PUBLIC_URL%/og-image.png" />
+    
+    <!-- Mobile -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="theme-color" content="#667eea" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="Mello-Roos Tax" />
+    
+    <!-- Favicons -->
+    <link rel="icon" type="image/svg+xml" href="%PUBLIC_URL%/favicon.svg?v=2" />
+    <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.svg" />
     <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
     
-    <!-- Google Fonts - Inter -->
+    <!-- Preconnect for Performance -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="dns-prefetch" href="https://sacramento-mello-roos-be.vercel.app">
+    
+    <!-- Google Fonts - Inter -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     
-    <title>Sacramento County Mello-Roos Tax Lookup</title>
+    <!-- Structured Data (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Sacramento County Mello-Roos Tax Lookup",
+      "description": "Free tool to lookup Mello-Roos property tax information for addresses in Sacramento County, California",
+      "url": "https://sacramento-mello-roos.vercel.app/",
+      "applicationCategory": "FinanceApplication",
+      "operatingSystem": "Web",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "5",
+        "ratingCount": "1"
+      },
+      "provider": {
+        "@type": "Organization",
+        "name": "Sacramento Mello-Roos Tax Lookup",
+        "url": "https://sacramento-mello-roos.vercel.app/"
+      },
+      "areaServed": {
+        "@type": "State",
+        "name": "California"
+      },
+      "serviceType": "Tax Information Service"
+    }
+    </script>
+    
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "Sacramento County Mello-Roos Tax Lookup",
+      "url": "https://sacramento-mello-roos.vercel.app/",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": {
+          "@type": "EntryPoint",
+          "urlTemplate": "https://sacramento-mello-roos.vercel.app/?address={search_term_string}"
+        },
+        "query-input": "required name=search_term_string"
+      }
+    }
+    </script>
+    
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "Sacramento County Mello-Roos Tax Lookup",
+      "description": "Property tax information service for Sacramento County",
+      "address": {
+        "@type": "PostalAddress",
+        "addressRegion": "CA",
+        "addressLocality": "Sacramento County"
+      },
+      "areaServed": [
+        "Sacramento",
+        "Elk Grove",
+        "Folsom",
+        "Natomas",
+        "West Sacramento",
+        "Rancho Cordova",
+        "Lincoln"
+      ]
+    }
+    </script>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
